@@ -10,8 +10,7 @@ export default {
 	],
 	routes: [],
 	optimize: {
-		// TODO
-		// "bundle": true,
+		"bundle": true,
 	},
 	packageOptions: {
 	},

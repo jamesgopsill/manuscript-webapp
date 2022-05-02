@@ -43,7 +43,11 @@
 		{#each Object.entries($manuscript.references) as [k, v]}
 			<tr>
 				<td>{k}</td>
-				<td>{v}</td>
+				{#if v.length > 50}
+					<td><a href={v}>{v.substring(0, 50)+"..."}</a></td>
+				{:else}
+					<td><a href={v}>{v}</a></td>
+				{/if}
 				<td>
 					<Button size="sm" on:click={() => removeReference(k)}>Remove</Button>
 				</td>

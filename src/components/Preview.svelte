@@ -9,7 +9,7 @@
 		processPublication,
 		processKeywords,
 		processAbstract,
-		processContent,
+		processContent
 	} from "../ts/manuscript-parser-fcns"
 
 	let html = ""

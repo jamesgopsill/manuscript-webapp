@@ -2,7 +2,7 @@
 	import { FormGroup, Row, Col, Table, Button, Input } from "sveltestrap"
 	import manuscript from "../ts/manuscript-store"
 
-	let key: string = "testing"
+	let key: string = ""
 	let files: any
 	let input: any
 

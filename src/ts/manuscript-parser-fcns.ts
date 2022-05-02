@@ -82,6 +82,7 @@ export const processContent = (manuscript: ManuScript): string => {
 	let content = manuscript.content
 	content = processHeadings(content)
 	content = processCitations(content, manuscript.references)
+	content = processFigures(content, manuscript.media)
 
 	// sorting out the paragraphs
 	content = content.replaceAll("\r", "")
@@ -141,7 +142,7 @@ const processHeadings = (s: string): string => {
 	return s
 }
 
-const processCitations = (
+export const processCitations = (
 	c: string,
 	references: ManuScript["references"]
 ): string => {
@@ -154,4 +155,53 @@ const processCitations = (
 	c = c.replaceAll("<Cite>", "[")
 	c = c.replaceAll("</Cite>", "]")
 	return c
+}
+
+export const processFigures = (
+	s: string,
+	fileData: { [key: string]: string }
+): string => {
+	let figures = s.match(/(<Figure>)([\s\S]*?)(<\/Figure>)/gm)
+
+	if (!figures) {
+		return s
+	}
+
+	let n = 0
+	for (let figXML of figures) {
+		n++
+		let figReplacementXML = "<Figure>"
+
+		let figMatches = figXML.match(/<Key>([\s\S]*?)<\/Key>/m)
+		if (figMatches) {
+			let figFile = figMatches[1]
+			figFile = figFile.trim()
+			if (fileData[figFile]) {
+				figReplacementXML += `<img class="paper-img" src="${fileData[figFile]}" />`
+			} else {
+				figReplacementXML += "NO IMAGE FOUND"
+			}
+		}
+
+		let captionMatches = figXML.match(/<Caption>([\s\S]*?)<\/Caption>/m)
+		let caption = ""
+		if (captionMatches != null) {
+			caption = captionMatches[1]
+			caption = caption.trim()
+		} else {
+			caption = "No Caption Detected"
+		}
+		figReplacementXML += `<figcaption><strong>Figure ${n}.</strong> ${caption}</figcaption>`
+		figReplacementXML += "</figure>"
+
+		s = s.replace(figXML, figReplacementXML)
+
+		let labelMatch = figXML.match(/<Label>([\s\S]*?)<\/Label>/m)
+		if (labelMatch) {
+			let label = labelMatch[1]
+			label = label.trim()
+			s = s.replaceAll(label, n.toString())
+		}
+	}
+	return s
 }

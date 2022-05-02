@@ -10,7 +10,8 @@ export const template = `
 		<title>{{title}}</title>
 		<style>
 			* {
-				font-family: Helvetica, sans-serif;
+				/* font-family: Helvetica, sans-serif; */
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 				margin: 0 0;
 				padding: 0 0;
 			}
@@ -21,6 +22,16 @@ export const template = `
 				line-height: 1.4em;
 				text-align: justify;
 			}
+
+			ul, ol {
+				margin-bottom: 1em;
+			}
+
+			li {
+				list-style-position: inside;
+				font-size: 1em;
+				line-height: 1.4em;
+			} 
 			
 			body {
 				max-width: 650px;
@@ -92,7 +103,7 @@ export const template = `
 			figcaption,
 			.paper-media-caption,
 			caption {
-				font-size: 0.8em;
+				font-size: 0.9em;
 				text-align: center;
 				margin-top: 5px;
 				margin-bottom: 10px;
