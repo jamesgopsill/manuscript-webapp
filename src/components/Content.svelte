@@ -1,6 +1,7 @@
 <script>
 	import viewport from "../ts/use-viewport"
-	import manuscript from "../ts/manuscript-store"
+	//import manuscript from "../ts/manuscript-store"
+	import { content, contentScrollPosition } from "../ts/stores"
 	import { onMount } from "svelte"
 
 	let editor = null
@@ -16,14 +17,21 @@
 		//@ts-ignore
 		editor = CodeMirror(document.getElementById("code-editor"), config)
 		editor.on("changes", () => {
-			$manuscript.content = editor.getValue()
+			content.update(value => editor.getValue())
+		})
+		editor.on("scroll", (v) => {
+			// console.log("scrolling", editor.getScrollInfo())
+			const scrollInfo = editor.getScrollInfo()
+			const percent = scrollInfo.top / scrollInfo.height
+			// console.log(percent)
+			contentScrollPosition.update(v => percent)
 		})
 	})
 
 	$: {
 		if (editor) {
-			if (editor.getValue() != $manuscript.content) {
-				editor.setValue($manuscript.content)
+			if (editor.getValue() != $content) {
+				editor.setValue($content)
 			}
 			editor.setSize(null, innerHeight - 120)
 		}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { FormGroup, Row, Col, Table, Button, Input } from "sveltestrap"
-	import manuscript from "../ts/manuscript-store"
+	//import manuscript from "../ts/manuscript-store"
+	import { media } from "../ts/stores"
 
 	let key: string = ""
 	let files: any
@@ -14,7 +15,11 @@
 			// get the file in base 64 format
 			const reader = new FileReader()
 			reader.addEventListener("load", () => {
-				$manuscript.media[key] = reader.result.toString()
+				//$manuscript.media[key] = reader.result.toString()
+				media.update(dict => {
+					dict[key] = reader.result.toString()
+					return dict
+				})
 				// reset the values
 				key = ""
 				input.value = ""
@@ -30,8 +35,8 @@
 	}
 
 	const removeMedia = (k: string) => {
-		delete $manuscript.media[k]
-		$manuscript.media = $manuscript.media
+		delete $media[k]
+		$media = $media
 	}
 </script>
 
@@ -58,13 +63,20 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each Object.entries($manuscript.media) as [k, v]}
+		{#each Object.entries($media) as [k, v]}
 			<tr>
 				<td>{k}</td>
 				<td>
 					{#if v.includes("image/jpeg") || v.includes("image/png")}
-						<img alt="" src={v} width="100" />
+						<img alt="" src={v} width="150" />
+					{:else if v.includes("video/mp4")}
+						<video width="150" controls>
+							<source src={v} type="video/mp4">
+						</video>
+					{:else}
+						<a href={v} download="dataset">Download</a>
 					{/if}
+
 				</td>
 				<td>
 					<Button on:click={() => removeMedia(k)} size="sm">Remove</Button>

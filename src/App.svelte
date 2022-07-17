@@ -15,9 +15,11 @@
 	import Content from "./components/Content.svelte"
 	import References from "./components/References.svelte"
 	import Media from "./components/Media.svelte"
-	import manuscript from "./ts/manuscript-store"
+	// import manuscript from "./ts/manuscript-store"
+	import { title, publication, authors, keywords, abstract, content, media, references } from "./ts/stores"
 
 	let fileHandle: any
+
 
 	const onOpen = async () => {
 		console.log("Open Clicked")
@@ -39,8 +41,18 @@
 			fileHandle = await window.showOpenFilePicker(config)
 			fileHandle = fileHandle[0]
 			const file = await fileHandle.getFile()
-			const contents = await file.text()
-			$manuscript = JSON.parse(contents)
+			const text = await file.text()
+			const manuscript = JSON.parse(text)
+			title.set(manuscript.title)
+			publication.set(manuscript.publication)
+			authors.set(manuscript.authors)
+			keywords.set(manuscript.keywords)
+			abstract.set(manuscript.abstract)
+			content.set(manuscript.content)
+			media.set(manuscript.media)
+			references.set(manuscript.references)
+			// $manuscript = manuscript
+			
 		} else {
 			console.log("Unsupported browser")
 		}
@@ -50,7 +62,18 @@
 		console.log("Save Clicked")
 		if (fileHandle) {
 			const writable = await fileHandle.createWritable()
-			await writable.write(JSON.stringify($manuscript))
+			const json = {
+				title: $title,
+				publication: $publication,
+				authors: $authors,
+				keywords: $keywords,
+				abstract: $abstract,
+				content: $content,
+				media: $media,
+				references: $references
+			}
+			await writable.write(JSON.stringify(json))
+			// await writable.write(JSON.stringify($manuscript))
 			await writable.close()
 		} else {
 			saveNewFile()
@@ -75,7 +98,18 @@
 			fileHandle = await window.showSaveFilePicker(config)
 			if (fileHandle) {
 				const writable = await fileHandle.createWritable()
-				await writable.write(JSON.stringify($manuscript))
+				const json = {
+					title: $title,
+					publication: $publication,
+					authors: $authors,
+					keywords: $keywords,
+					abstract: $abstract,
+					content: $content,
+					media: $media,
+					references: $references
+				}
+				await writable.write(JSON.stringify(json))
+				// await writable.write(JSON.stringify($manuscript))
 				await writable.close()
 			}
 		} else {

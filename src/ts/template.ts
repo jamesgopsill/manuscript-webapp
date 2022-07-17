@@ -1,4 +1,5 @@
 export const template = `
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -90,6 +91,10 @@ export const template = `
 				margin-bottom: 20px;
 				margin-top: 20px;
 			}
+
+			h1, h2, h3 {
+				font-size: 1.4em;
+			}
 			
 			a {
 				text-decoration: none;
@@ -98,6 +103,10 @@ export const template = `
 
 			a:hover {
 				text-decoration: underline;
+			}
+			
+			figure {
+				text-align: center;
 			}
 			
 			figcaption,
@@ -109,23 +118,25 @@ export const template = `
 				margin-bottom: 10px;
 			}
 			
+			/*
 			.paper-equation {
 				text-align: center;
 				float: left;
 				width: 95%;
+				font-size: 1.2em;
 			}
 			
 			.paper-equation-caption {
 				text-align: right;
-				font-size: 0.8em;
+				font-size: 1em;
 				width: 4%;
 				float: right;
 			}
+			*/
 			
 			img {
-				width: 100%;
-				/* max-width: 100%;
-			max-height: 100px; */
+				max-width: 90%;
+				max-height: 300px;
 			}
 			
 			video {
@@ -140,10 +151,18 @@ export const template = `
 				text-align: center;
 			}
 			
-			.katex-html {
-				display: none !important;
+			.paper-display-equation {
+				width: 100%;
+				margin-bottom: 10px;
+			}
+			.paper-equation {
+				width: 95% !important;
+			}
+			.paper-equation-label {
+				width: 5%;
 			}
 			
+			/*
 			table {
 				margin: 0 auto;
 				margin-bottom: 10px;
@@ -152,6 +171,7 @@ export const template = `
 				border-bottom: 2px solid black;
 				border-collapse: collapse;
 			}
+			*/
 			
 			th {
 				border-bottom: 1px solid black;
@@ -169,6 +189,16 @@ export const template = `
 
 			.MathJax {
 				font-size: 1em !important;
+			}
+		</style>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css"></link>
+		<style>
+			.splide__slide {
+				text-align: center;
+			}
+			.splide__slide img {
+				width: auto;
+				height: 400px;
 			}
 		</style>
 	</head>
@@ -214,6 +244,16 @@ export const template = `
 			async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
 		>
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"></script>
+		<script>
+			const carousels = document.getElementsByClassName("splide")
+			for (const c of carousels) {
+				const options = {
+					pagination: false
+				}
+				new Splide(c, options).mount()
+			}
 		</script>
 	</body>
 </html>

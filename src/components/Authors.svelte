@@ -1,5 +1,6 @@
 <script lang="ts">
-	import manuscript from "../ts/manuscript-store"
+	// import manuscript from "../ts/manuscript-store"
+	import { authors } from "../ts/stores"
 	import { Col, Row, Button, Table, Input, FormGroup, Label } from "sveltestrap"
 
 	let name = ""
@@ -7,19 +8,34 @@
 
 	const addAuthor = () => {
 		console.log("Adding Author", name)
+		/*
 		$manuscript.authors.push({
 			name: name,
 			orcid: orcid,
 		})
 		$manuscript.authors = $manuscript.authors
+		*/
+		authors.update(value => {
+			value.push({
+				name,
+				orcid
+			})
+			return value
+		})
 		name = ""
 		orcid = ""
 	}
 
 	const removeAuthor = (idx: number) => {
 		console.log(idx)
+		authors.update(value => {
+			value.splice(idx, 1)
+			return value
+		})
+		/*
 		$manuscript.authors.splice(idx, 1)
 		$manuscript.authors = $manuscript.authors
+		*/
 	}
 </script>
 
@@ -47,7 +63,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each $manuscript.authors as author, i}
+		{#each $authors as author, i}
 			<tr>
 				<td>{author.name}</td>
 				<td>{author.orcid}</td>
