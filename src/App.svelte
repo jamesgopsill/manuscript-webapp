@@ -15,6 +15,8 @@
 	import Content from "./components/Content.svelte"
 	import References from "./components/References.svelte"
 	import Media from "./components/Media.svelte"
+	import Syntax from "./components/Syntax.svelte"
+	import About from "./components/About.svelte"
 	// import manuscript from "./ts/manuscript-store"
 	import { title, publication, authors, keywords, abstract, content, media, references } from "./ts/stores"
 
@@ -137,7 +139,7 @@
 	</span>
 	<Nav class="ms-auto" navbar={true}>
 		<NavItem>
-			<NavLink href="#">Sponsor</NavLink>
+			<NavLink href="https://github.com/jamesgopsill/manuscript-webapp">Sponsor</NavLink>
 		</NavItem>
 		<NavItem>
 			<NavLink href="#" on:click={onOpen}>Open</NavLink>
@@ -163,12 +165,19 @@
 			<TabPane class="mt-1" tabId="references" tab="References">
 				<References />
 			</TabPane>
+			<TabPane class="mt-1" tabId="syntax" tab="Syntax">
+				<Syntax />
+			</TabPane>
+			<TabPane class="mt-1" tabId="about" tab="About">
+				<About />
+			</TabPane>
 		</TabContent>
 	</Col>
 	<Col>
 		<Preview />
 	</Col>
 </Row>
+
 
 <style>
 	:global(.my-row) {
