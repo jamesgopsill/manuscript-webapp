@@ -1,7 +1,5 @@
 <script lang="ts"></script>
 
-
-
 <h3>Section</h3>
 
 <pre>{"<Section></Section>"}
@@ -13,7 +11,6 @@
 
 <pre>{`<b></b>`}
 </pre>
-
 
 <h4>Italics</h4>
 
@@ -50,7 +47,6 @@
 </Figure>`}
 </pre>
 
-
 <h3>Slideshow</h3>
 
 <pre>{`<Slideshow>
@@ -67,7 +63,6 @@
 </Slideshow>`}
 </pre>
 
-
 <h3>Table</h3>
 
 <p>Note: Tables are added as images at the moment.</p>
@@ -78,7 +73,6 @@
   <Label></Label>
 </Table>`}
 </pre>
-
 
 <h3>Video</h3>
 
@@ -97,7 +91,6 @@
   <Label></Label>
 </Dataset>`}
 </pre>
-
 
 <style>
 	pre {

@@ -1,7 +1,17 @@
 <script lang="ts">
 	import { Button } from "sveltestrap"
 	// import manuscript from "../ts/manuscript-store"
-	import { title, publication, authors, keywords, abstract, content, media, references, contentScrollPosition } from "../ts/stores"
+	import {
+		title,
+		publication,
+		authors,
+		keywords,
+		abstract,
+		content,
+		media,
+		references,
+		contentScrollPosition,
+	} from "../ts/stores"
 	import { template } from "../ts/template"
 	import {
 		processTitle,
@@ -10,7 +20,7 @@
 		processPublication,
 		processKeywords,
 		processAbstract,
-		processContent
+		processContent,
 	} from "../ts/manuscript-parser-fcns"
 
 	let html = ""
@@ -40,17 +50,14 @@
 		html = (" " + template).slice(1)
 		html = html.replaceAll("{{title}}", processTitle($title))
 		html = html.replaceAll("{{authors}}", processAuthors($authors))
-		html = html.replace(
-			"{{publication}}",
-			processPublication($publication)
-		)
+		html = html.replace("{{publication}}", processPublication($publication))
 		html = html.replace("{{keywords}}", processKeywords($keywords))
 		html = html.replace("{{abstract}}", processAbstract($abstract))
-		html = html.replace("{{content}}", processContent($content, $media, $references))
 		html = html.replace(
-			"{{citations}}",
-			processReferences($references)
+			"{{content}}",
+			processContent($content, $media, $references)
 		)
+		html = html.replace("{{citations}}", processReferences($references))
 		/*
 		setTimeout(() => {
 			scrollInView()
@@ -79,7 +86,8 @@
 		const iframe = document.getElementById("iframe")
 		if (iframe && iframe.contentWindow.document.body.offsetHeight) {
 			//@ts-ignore
-			const pos = $contentScrollPosition * iframe.contentWindow.document.body.offsetHeight
+			const pos =
+				$contentScrollPosition * iframe.contentWindow.document.body.offsetHeight
 			//@ts-ignore
 			iframe.contentWindow.scrollTo(0, pos)
 		}
@@ -103,13 +111,17 @@
 	}
 </script>
 
-
-
 <div class="text-center mb-2">
 	<Button size="sm" on:click={downloadHTML}>Download</Button>
 </div>
 
-<iframe id="iframe" class="preview" title="preview" srcdoc={html} on:load={scrollInView} />
+<iframe
+	id="iframe"
+	class="preview"
+	title="preview"
+	srcdoc={html}
+	on:load={scrollInView}
+/>
 
 <style>
 	.preview {

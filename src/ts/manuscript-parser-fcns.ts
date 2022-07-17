@@ -78,7 +78,11 @@ export const processAbstract = (abstract: ManuScript["abstract"]): string => {
 	return html
 }
 
-export const processContent = (content: string, media: any, references: any): string => {
+export const processContent = (
+	content: string,
+	media: any,
+	references: any
+): string => {
 	//let content = content
 	content = processHeadings(content)
 	content = processCitations(content, references)
@@ -252,7 +256,6 @@ export const processTables = (
 			tableHTML += `<p class="paper-alert"><b>Warning:</b> <Key> element could not be found</p>`
 		}
 
-
 		tableHTML += `</figure>`
 
 		s = s.replace(table, tableHTML)
@@ -269,7 +272,10 @@ export const processTables = (
 	return s
 }
 
-export const processSlideshows = (s: string, files: { [key: string]: string }) => {
+export const processSlideshows = (
+	s: string,
+	files: { [key: string]: string }
+) => {
 	const slideshows = s.match(/(<Slideshow>)([\s\S]*?)(<\/Slideshow>)/gm)
 
 	if (!slideshows) {
@@ -310,16 +316,15 @@ export const processSlideshows = (s: string, files: { [key: string]: string }) =
 				}
 			}
 
-			replacementHTML += '</li>'
+			replacementHTML += "</li>"
 		}
-
 
 		// Slideshow caption
 		let captionMatches = slideshow.match(/<Caption>([\s\S]*?)<\/Caption>/gm)
 		let caption = ""
 		console.log(captionMatches)
 		if (captionMatches != null) {
-			caption = captionMatches[captionMatches.length-1]
+			caption = captionMatches[captionMatches.length - 1]
 			caption = caption.trim()
 		} else {
 			caption = "No Caption Detected"
@@ -368,7 +373,7 @@ export const processVideos = (s: string, files: { [key: string]: string }) => {
 					</video>`
 			}
 		}
-		
+
 		let captionMatches = video.match(/<Caption>([\s\S]*?)<\/Caption>/m)
 		let caption = ""
 		if (captionMatches != null) {
@@ -392,7 +397,10 @@ export const processVideos = (s: string, files: { [key: string]: string }) => {
 	return s
 }
 
-export const processDatasets = (s: string, files: { [key: string]: string }) => {
+export const processDatasets = (
+	s: string,
+	files: { [key: string]: string }
+) => {
 	const datasets = s.match(/(<Dataset>)([\s\S]*?)(<\/Dataset>)/gm)
 
 	if (!datasets) {
@@ -416,7 +424,7 @@ export const processDatasets = (s: string, files: { [key: string]: string }) => 
 		} else {
 			datasetHTML += `<p class="paper-alert"><b>Warning:</b> <Key> element could not be found</p>`
 		}
-		
+
 		let captionMatches = dataset.match(/<Caption>([\s\S]*?)<\/Caption>/m)
 		let caption = ""
 		if (captionMatches != null) {
@@ -441,7 +449,6 @@ export const processDatasets = (s: string, files: { [key: string]: string }) => 
 }
 
 export const processEquations = (s: string): string => {
-
 	let tokens = s.match(/<Equation>([\s\S]*?)<\/Equation>/g)
 
 	if (tokens != null) {
@@ -471,18 +478,13 @@ export const processEquations = (s: string): string => {
 }
 
 export const processCode = (s: string): string => {
-
 	let tokens = s.match(/<Code>([\s\S]*?)<\/Code>/g)
 
 	if (tokens != null) {
 		for (let i = 0; i < tokens.length; i++) {
 			let code = removeTags("Code", tokens[i])
-			s = s.replace(
-				tokens[i],
-				`<pre>${code}</pre>`
-			)
+			s = s.replace(tokens[i], `<pre>${code}</pre>`)
 		}
 	}
 	return s
 }
-

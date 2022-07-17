@@ -18,10 +18,18 @@
 	import Syntax from "./components/Syntax.svelte"
 	import About from "./components/About.svelte"
 	// import manuscript from "./ts/manuscript-store"
-	import { title, publication, authors, keywords, abstract, content, media, references } from "./ts/stores"
+	import {
+		title,
+		publication,
+		authors,
+		keywords,
+		abstract,
+		content,
+		media,
+		references,
+	} from "./ts/stores"
 
 	let fileHandle: any
-
 
 	const onOpen = async () => {
 		console.log("Open Clicked")
@@ -54,7 +62,6 @@
 			media.set(manuscript.media)
 			references.set(manuscript.references)
 			// $manuscript = manuscript
-			
 		} else {
 			console.log("Unsupported browser")
 		}
@@ -72,7 +79,7 @@
 				abstract: $abstract,
 				content: $content,
 				media: $media,
-				references: $references
+				references: $references,
 			}
 			await writable.write(JSON.stringify(json))
 			// await writable.write(JSON.stringify($manuscript))
@@ -108,7 +115,7 @@
 					abstract: $abstract,
 					content: $content,
 					media: $media,
-					references: $references
+					references: $references,
 				}
 				await writable.write(JSON.stringify(json))
 				// await writable.write(JSON.stringify($manuscript))
@@ -139,7 +146,9 @@
 	</span>
 	<Nav class="ms-auto" navbar={true}>
 		<NavItem>
-			<NavLink href="https://github.com/jamesgopsill/manuscript-webapp">Sponsor</NavLink>
+			<NavLink href="https://github.com/jamesgopsill/manuscript-webapp"
+				>Sponsor</NavLink
+			>
 		</NavItem>
 		<NavItem>
 			<NavLink href="#" on:click={onOpen}>Open</NavLink>
@@ -177,7 +186,6 @@
 		<Preview />
 	</Col>
 </Row>
-
 
 <style>
 	:global(.my-row) {

@@ -8,7 +8,7 @@
 
 	const addReference = () => {
 		//$manuscript.references[key] = url
-		references.update(dict => {
+		references.update((dict) => {
 			dict[key] = url
 			return dict
 		})
@@ -49,7 +49,7 @@
 			<tr>
 				<td>{k}</td>
 				{#if v.length > 50}
-					<td><a href={v}>{v.substring(0, 50)+"..."}</a></td>
+					<td><a href={v}>{v.substring(0, 50) + "..."}</a></td>
 				{:else}
 					<td><a href={v}>{v}</a></td>
 				{/if}

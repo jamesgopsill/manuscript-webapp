@@ -16,7 +16,7 @@
 			const reader = new FileReader()
 			reader.addEventListener("load", () => {
 				//$manuscript.media[key] = reader.result.toString()
-				media.update(dict => {
+				media.update((dict) => {
 					dict[key] = reader.result.toString()
 					return dict
 				})
@@ -71,12 +71,11 @@
 						<img alt="" src={v} width="150" />
 					{:else if v.includes("video/mp4")}
 						<video width="150" controls>
-							<source src={v} type="video/mp4">
+							<source src={v} type="video/mp4" />
 						</video>
 					{:else}
 						<a href={v} download="dataset">Download</a>
 					{/if}
-
 				</td>
 				<td>
 					<Button on:click={() => removeMedia(k)} size="sm">Remove</Button>

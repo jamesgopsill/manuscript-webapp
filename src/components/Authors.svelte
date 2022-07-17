@@ -15,10 +15,10 @@
 		})
 		$manuscript.authors = $manuscript.authors
 		*/
-		authors.update(value => {
+		authors.update((value) => {
 			value.push({
 				name,
-				orcid
+				orcid,
 			})
 			return value
 		})
@@ -28,7 +28,7 @@
 
 	const removeAuthor = (idx: number) => {
 		console.log(idx)
-		authors.update(value => {
+		authors.update((value) => {
 			value.splice(idx, 1)
 			return value
 		})

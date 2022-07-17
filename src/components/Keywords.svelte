@@ -6,7 +6,7 @@
 	let keyword = ""
 
 	const addKeyword = () => {
-		keywords.update(value => {
+		keywords.update((value) => {
 			value.push(keyword)
 			return value
 		})
@@ -16,7 +16,7 @@
 	}
 
 	const removeKeyword = (idx: number) => {
-		keywords.update(value => {
+		keywords.update((value) => {
 			value.splice(idx, 1)
 			return value
 		})

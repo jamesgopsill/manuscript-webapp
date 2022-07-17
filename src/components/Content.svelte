@@ -17,14 +17,14 @@
 		//@ts-ignore
 		editor = CodeMirror(document.getElementById("code-editor"), config)
 		editor.on("changes", () => {
-			content.update(value => editor.getValue())
+			content.update((value) => editor.getValue())
 		})
 		editor.on("scroll", (v) => {
 			// console.log("scrolling", editor.getScrollInfo())
 			const scrollInfo = editor.getScrollInfo()
 			const percent = scrollInfo.top / scrollInfo.height
 			// console.log(percent)
-			contentScrollPosition.update(v => percent)
+			contentScrollPosition.update((v) => percent)
 		})
 	})
 
