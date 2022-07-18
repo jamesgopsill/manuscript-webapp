@@ -17,6 +17,11 @@
 <pre>{`<i></i>`}
 </pre>
 
+<h4>Inline Math</h4>
+
+<pre>{`$F=ma$`}
+</pre>
+
 <h4>Numbered List</h4>
 
 <pre>{`<ol>
@@ -36,6 +41,14 @@
 <h3>Citation</h3>
 
 <pre>{"<Cite></Cite>"}
+</pre>
+
+<h3>Equation</h3>
+
+<pre>{`<Equation>
+  F=ma
+  <Label></Label>
+</FEquationigure>`}
 </pre>
 
 <h3>Figure</h3>

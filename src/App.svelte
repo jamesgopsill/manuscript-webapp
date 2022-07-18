@@ -27,6 +27,8 @@
 		content,
 		media,
 		references,
+		date,
+		doi,
 	} from "./ts/stores"
 
 	let fileHandle: any
@@ -53,14 +55,17 @@
 			const file = await fileHandle.getFile()
 			const text = await file.text()
 			const manuscript = JSON.parse(text)
-			title.set(manuscript.title)
-			publication.set(manuscript.publication)
-			authors.set(manuscript.authors)
-			keywords.set(manuscript.keywords)
-			abstract.set(manuscript.abstract)
-			content.set(manuscript.content)
-			media.set(manuscript.media)
-			references.set(manuscript.references)
+			if (manuscript.title) title.set(manuscript.title)
+			if (manuscript.publication) publication.set(manuscript.publication)
+			if (manuscript.authors)
+				if (manuscript.title) authors.set(manuscript.authors)
+			if (manuscript.keywords) keywords.set(manuscript.keywords)
+			if (manuscript.abstract) abstract.set(manuscript.abstract)
+			if (manuscript.content) content.set(manuscript.content)
+			if (manuscript.media) media.set(manuscript.media)
+			if (manuscript.references) references.set(manuscript.references)
+			if (manuscript.date) date.set(manuscript.date)
+			if (manuscript.doi) doi.set(manuscript.doi)
 			// $manuscript = manuscript
 		} else {
 			console.log("Unsupported browser")
@@ -80,6 +85,8 @@
 				content: $content,
 				media: $media,
 				references: $references,
+				doi: $doi,
+				date: $date,
 			}
 			await writable.write(JSON.stringify(json))
 			// await writable.write(JSON.stringify($manuscript))

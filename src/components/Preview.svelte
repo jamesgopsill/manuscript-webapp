@@ -11,6 +11,8 @@
 		media,
 		references,
 		contentScrollPosition,
+		doi,
+		date,
 	} from "../ts/stores"
 	import { template } from "../ts/template"
 	import {
@@ -51,6 +53,8 @@
 		html = html.replaceAll("{{title}}", processTitle($title))
 		html = html.replaceAll("{{authors}}", processAuthors($authors))
 		html = html.replace("{{publication}}", processPublication($publication))
+		html = html.replace("{{date}}", $date)
+		html = html.replaceAll("{{doi}}", $doi)
 		html = html.replace("{{keywords}}", processKeywords($keywords))
 		html = html.replace("{{abstract}}", processAbstract($abstract))
 		html = html.replace(
@@ -102,6 +106,8 @@
 		$media
 		$references
 		$keywords
+		$date
+		$doi
 		setCompileTimer()
 	}
 

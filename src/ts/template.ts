@@ -12,9 +12,13 @@ export const template = `
 		<style>
 			* {
 				/* font-family: Helvetica, sans-serif; */
-				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+				/* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
 				margin: 0 0;
 				padding: 0 0;
+			}
+
+			h1, h2, h3, h4, p, li, figcaption, .paper-media-caption {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 			}
 			
 			p {
@@ -26,12 +30,13 @@ export const template = `
 
 			ul, ol {
 				margin-bottom: 1em;
+				margin-left: 30px;
 			}
 
 			li {
-				list-style-position: inside;
+				/* list-style-position: inside; */ 
 				font-size: 1em;
-				line-height: 1.4em;
+				line-height: 1.6em;
 			} 
 			
 			body {
@@ -203,7 +208,9 @@ export const template = `
 		</style>
 	</head>
 	<body>
-		<p class="published-in">{{publication}}</p>
+		<p class="published-in">Publication: {{publication}}</p>
+		<p class="published-in">Date: {{date}}</p>
+		<p class="published-in">DOI: {{doi}}</p>
 		<p class="created-by">
 			Created using
 			<a href="http://jamesgopsill.github.io/manu-script">ManuScript</a>

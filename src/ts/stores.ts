@@ -2,6 +2,8 @@ import { writable } from "svelte/store"
 
 export const title = writable("")
 export const publication = writable("")
+export const doi = writable("")
+export const date = writable("")
 export const authors = writable([])
 export const keywords = writable([])
 export const abstract = writable("")

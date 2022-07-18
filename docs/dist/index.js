@@ -8058,6 +8058,8 @@ var TabPane = class extends SvelteComponent {
 // docs/dist/ts/stores.js
 var title = writable("");
 var publication = writable("");
+var doi = writable("");
+var date = writable("");
 var authors = writable([]);
 var keywords = writable([]);
 var abstract = writable("");
@@ -9348,7 +9350,7 @@ var Keywords = class extends SvelteComponent {
 var Keywords_svelte_default = Keywords;
 
 // docs/dist/components/Summary.svelte.js
-function create_default_slot_34(ctx) {
+function create_default_slot_73(ctx) {
   let t;
   return {
     c() {
@@ -9363,7 +9365,7 @@ function create_default_slot_34(ctx) {
     }
   };
 }
-function create_default_slot_24(ctx) {
+function create_default_slot_63(ctx) {
   let label;
   let t;
   let input;
@@ -9371,12 +9373,12 @@ function create_default_slot_24(ctx) {
   let current;
   label = new Label({
     props: {
-      $$slots: {default: [create_default_slot_34]},
+      $$slots: {default: [create_default_slot_73]},
       $$scope: {ctx}
     }
   });
   function input_value_binding(value) {
-    ctx[2](value);
+    ctx[4](value);
   }
   let input_props = {type: "text"};
   if (ctx[0] !== void 0) {
@@ -9398,7 +9400,7 @@ function create_default_slot_24(ctx) {
     },
     p(ctx2, dirty) {
       const label_changes = {};
-      if (dirty & 16) {
+      if (dirty & 256) {
         label_changes.$$scope = {dirty, ctx: ctx2};
       }
       label.$set(label_changes);
@@ -9430,7 +9432,7 @@ function create_default_slot_24(ctx) {
     }
   };
 }
-function create_default_slot_15(ctx) {
+function create_default_slot_53(ctx) {
   let t;
   return {
     c() {
@@ -9445,7 +9447,7 @@ function create_default_slot_15(ctx) {
     }
   };
 }
-function create_default_slot5(ctx) {
+function create_default_slot_43(ctx) {
   let label;
   let t;
   let input;
@@ -9453,12 +9455,12 @@ function create_default_slot5(ctx) {
   let current;
   label = new Label({
     props: {
-      $$slots: {default: [create_default_slot_15]},
+      $$slots: {default: [create_default_slot_53]},
       $$scope: {ctx}
     }
   });
   function input_value_binding_1(value) {
-    ctx[3](value);
+    ctx[5](value);
   }
   let input_props = {type: "text"};
   if (ctx[1] !== void 0) {
@@ -9480,7 +9482,7 @@ function create_default_slot5(ctx) {
     },
     p(ctx2, dirty) {
       const label_changes = {};
-      if (dirty & 16) {
+      if (dirty & 256) {
         label_changes.$$scope = {dirty, ctx: ctx2};
       }
       label.$set(label_changes);
@@ -9512,24 +9514,204 @@ function create_default_slot5(ctx) {
     }
   };
 }
+function create_default_slot_34(ctx) {
+  let t;
+  return {
+    c() {
+      t = text("Date Published");
+    },
+    m(target, anchor) {
+      insert(target, t, anchor);
+    },
+    d(detaching) {
+      if (detaching)
+        detach(t);
+    }
+  };
+}
+function create_default_slot_24(ctx) {
+  let label;
+  let t;
+  let input;
+  let updating_value;
+  let current;
+  label = new Label({
+    props: {
+      $$slots: {default: [create_default_slot_34]},
+      $$scope: {ctx}
+    }
+  });
+  function input_value_binding_2(value) {
+    ctx[6](value);
+  }
+  let input_props = {type: "text"};
+  if (ctx[2] !== void 0) {
+    input_props.value = ctx[2];
+  }
+  input = new Input({props: input_props});
+  binding_callbacks.push(() => bind(input, "value", input_value_binding_2));
+  return {
+    c() {
+      create_component(label.$$.fragment);
+      t = space();
+      create_component(input.$$.fragment);
+    },
+    m(target, anchor) {
+      mount_component(label, target, anchor);
+      insert(target, t, anchor);
+      mount_component(input, target, anchor);
+      current = true;
+    },
+    p(ctx2, dirty) {
+      const label_changes = {};
+      if (dirty & 256) {
+        label_changes.$$scope = {dirty, ctx: ctx2};
+      }
+      label.$set(label_changes);
+      const input_changes = {};
+      if (!updating_value && dirty & 4) {
+        updating_value = true;
+        input_changes.value = ctx2[2];
+        add_flush_callback(() => updating_value = false);
+      }
+      input.$set(input_changes);
+    },
+    i(local) {
+      if (current)
+        return;
+      transition_in(label.$$.fragment, local);
+      transition_in(input.$$.fragment, local);
+      current = true;
+    },
+    o(local) {
+      transition_out(label.$$.fragment, local);
+      transition_out(input.$$.fragment, local);
+      current = false;
+    },
+    d(detaching) {
+      destroy_component(label, detaching);
+      if (detaching)
+        detach(t);
+      destroy_component(input, detaching);
+    }
+  };
+}
+function create_default_slot_15(ctx) {
+  let t;
+  return {
+    c() {
+      t = text("DOI");
+    },
+    m(target, anchor) {
+      insert(target, t, anchor);
+    },
+    d(detaching) {
+      if (detaching)
+        detach(t);
+    }
+  };
+}
+function create_default_slot5(ctx) {
+  let label;
+  let t;
+  let input;
+  let updating_value;
+  let current;
+  label = new Label({
+    props: {
+      $$slots: {default: [create_default_slot_15]},
+      $$scope: {ctx}
+    }
+  });
+  function input_value_binding_3(value) {
+    ctx[7](value);
+  }
+  let input_props = {type: "text"};
+  if (ctx[3] !== void 0) {
+    input_props.value = ctx[3];
+  }
+  input = new Input({props: input_props});
+  binding_callbacks.push(() => bind(input, "value", input_value_binding_3));
+  return {
+    c() {
+      create_component(label.$$.fragment);
+      t = space();
+      create_component(input.$$.fragment);
+    },
+    m(target, anchor) {
+      mount_component(label, target, anchor);
+      insert(target, t, anchor);
+      mount_component(input, target, anchor);
+      current = true;
+    },
+    p(ctx2, dirty) {
+      const label_changes = {};
+      if (dirty & 256) {
+        label_changes.$$scope = {dirty, ctx: ctx2};
+      }
+      label.$set(label_changes);
+      const input_changes = {};
+      if (!updating_value && dirty & 8) {
+        updating_value = true;
+        input_changes.value = ctx2[3];
+        add_flush_callback(() => updating_value = false);
+      }
+      input.$set(input_changes);
+    },
+    i(local) {
+      if (current)
+        return;
+      transition_in(label.$$.fragment, local);
+      transition_in(input.$$.fragment, local);
+      current = true;
+    },
+    o(local) {
+      transition_out(label.$$.fragment, local);
+      transition_out(input.$$.fragment, local);
+      current = false;
+    },
+    d(detaching) {
+      destroy_component(label, detaching);
+      if (detaching)
+        detach(t);
+      destroy_component(input, detaching);
+    }
+  };
+}
 function create_fragment5(ctx) {
   let formgroup0;
   let t0;
   let formgroup1;
   let t1;
-  let authors2;
+  let formgroup2;
   let t2;
-  let abstract2;
+  let formgroup3;
   let t3;
+  let authors2;
+  let t4;
+  let abstract2;
+  let t5;
   let keywords2;
   let current;
   formgroup0 = new FormGroup({
+    props: {
+      $$slots: {default: [create_default_slot_63]},
+      $$scope: {ctx}
+    }
+  });
+  formgroup1 = new FormGroup({
+    props: {
+      $$slots: {default: [create_default_slot_43]},
+      $$scope: {ctx}
+    }
+  });
+  formgroup2 = new FormGroup({
     props: {
       $$slots: {default: [create_default_slot_24]},
       $$scope: {ctx}
     }
   });
-  formgroup1 = new FormGroup({
+  formgroup3 = new FormGroup({
     props: {
       $$slots: {default: [create_default_slot5]},
       $$scope: {ctx}
@@ -9544,10 +9726,14 @@ function create_fragment5(ctx) {
       t0 = space();
       create_component(formgroup1.$$.fragment);
       t1 = space();
-      create_component(authors2.$$.fragment);
+      create_component(formgroup2.$$.fragment);
       t2 = space();
-      create_component(abstract2.$$.fragment);
+      create_component(formgroup3.$$.fragment);
       t3 = space();
+      create_component(authors2.$$.fragment);
+      t4 = space();
+      create_component(abstract2.$$.fragment);
+      t5 = space();
       create_component(keywords2.$$.fragment);
     },
     m(target, anchor) {
@@ -9555,30 +9741,46 @@ function create_fragment5(ctx) {
       insert(target, t0, anchor);
       mount_component(formgroup1, target, anchor);
       insert(target, t1, anchor);
-      mount_component(authors2, target, anchor);
+      mount_component(formgroup2, target, anchor);
       insert(target, t2, anchor);
-      mount_component(abstract2, target, anchor);
+      mount_component(formgroup3, target, anchor);
       insert(target, t3, anchor);
+      mount_component(authors2, target, anchor);
+      insert(target, t4, anchor);
+      mount_component(abstract2, target, anchor);
+      insert(target, t5, anchor);
       mount_component(keywords2, target, anchor);
       current = true;
     },
     p(ctx2, [dirty]) {
       const formgroup0_changes = {};
-      if (dirty & 17) {
+      if (dirty & 257) {
         formgroup0_changes.$$scope = {dirty, ctx: ctx2};
       }
       formgroup0.$set(formgroup0_changes);
       const formgroup1_changes = {};
-      if (dirty & 18) {
+      if (dirty & 258) {
         formgroup1_changes.$$scope = {dirty, ctx: ctx2};
       }
       formgroup1.$set(formgroup1_changes);
+      const formgroup2_changes = {};
+      if (dirty & 260) {
+        formgroup2_changes.$$scope = {dirty, ctx: ctx2};
+      }
+      formgroup2.$set(formgroup2_changes);
+      const formgroup3_changes = {};
+      if (dirty & 264) {
+        formgroup3_changes.$$scope = {dirty, ctx: ctx2};
+      }
+      formgroup3.$set(formgroup3_changes);
     },
     i(local) {
       if (current)
         return;
       transition_in(formgroup0.$$.fragment, local);
       transition_in(formgroup1.$$.fragment, local);
+      transition_in(formgroup2.$$.fragment, local);
+      transition_in(formgroup3.$$.fragment, local);
       transition_in(authors2.$$.fragment, local);
       transition_in(abstract2.$$.fragment, local);
       transition_in(keywords2.$$.fragment, local);
@@ -9587,6 +9789,8 @@ function create_fragment5(ctx) {
     o(local) {
       transition_out(formgroup0.$$.fragment, local);
       transition_out(formgroup1.$$.fragment, local);
+      transition_out(formgroup2.$$.fragment, local);
+      transition_out(formgroup3.$$.fragment, local);
       transition_out(authors2.$$.fragment, local);
       transition_out(abstract2.$$.fragment, local);
       transition_out(keywords2.$$.fragment, local);
@@ -9599,12 +9803,18 @@ function create_fragment5(ctx) {
       destroy_component(formgroup1, detaching);
       if (detaching)
         detach(t1);
-      destroy_component(authors2, detaching);
+      destroy_component(formgroup2, detaching);
       if (detaching)
         detach(t2);
-      destroy_component(abstract2, detaching);
+      destroy_component(formgroup3, detaching);
       if (detaching)
         detach(t3);
+      destroy_component(authors2, detaching);
+      if (detaching)
+        detach(t4);
+      destroy_component(abstract2, detaching);
+      if (detaching)
+        detach(t5);
       destroy_component(keywords2, detaching);
     }
   };
@@ -9612,8 +9822,12 @@ function create_fragment5(ctx) {
 function instance5($$self, $$props, $$invalidate) {
   let $title;
   let $publication;
+  let $date;
+  let $doi;
   component_subscribe($$self, title, ($$value) => $$invalidate(0, $title = $$value));
   component_subscribe($$self, publication, ($$value) => $$invalidate(1, $publication = $$value));
+  component_subscribe($$self, date, ($$value) => $$invalidate(2, $date = $$value));
+  component_subscribe($$self, doi, ($$value) => $$invalidate(3, $doi = $$value));
   function input_value_binding(value) {
     $title = value;
     title.set($title);
@@ -9622,7 +9836,24 @@ function instance5($$self, $$props, $$invalidate) {
     $publication = value;
     publication.set($publication);
   }
-  return [$title, $publication, input_value_binding, input_value_binding_1];
+  function input_value_binding_2(value) {
+    $date = value;
+    date.set($date);
+  }
+  function input_value_binding_3(value) {
+    $doi = value;
+    doi.set($doi);
+  }
+  return [
+    $title,
+    $publication,
+    $date,
+    $doi,
+    input_value_binding,
+    input_value_binding_1,
+    input_value_binding_2,
+    input_value_binding_3
+  ];
 }
 var Summary = class extends SvelteComponent {
   constructor(options) {
@@ -9647,9 +9878,13 @@ var template = `
 		<style>
 			* {
 				/* font-family: Helvetica, sans-serif; */
-				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+				/* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
 				margin: 0 0;
 				padding: 0 0;
+			}
+
+			h1, h2, h3, h4, p, li, figcaption, .paper-media-caption {
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 			}
 			
 			p {
@@ -9661,12 +9896,13 @@ var template = `
 
 			ul, ol {
 				margin-bottom: 1em;
+				margin-left: 30px;
 			}
 
 			li {
-				list-style-position: inside;
+				/* list-style-position: inside; */ 
 				font-size: 1em;
-				line-height: 1.4em;
+				line-height: 1.6em;
 			} 
 			
 			body {
@@ -9838,7 +10074,9 @@ var template = `
 		</style>
 	</head>
 	<body>
-		<p class="published-in">{{publication}}</p>
+		<p class="published-in">Publication: {{publication}}</p>
+		<p class="published-in">Date: {{date}}</p>
+		<p class="published-in">DOI: {{doi}}</p>
 		<p class="created-by">
 			Created using
 			<a href="http://jamesgopsill.github.io/manu-script">ManuScript</a>
@@ -10353,7 +10591,7 @@ function create_fragment6(ctx) {
     },
     p(ctx2, [dirty]) {
       const button_changes = {};
-      if (dirty & 32768) {
+      if (dirty & 131072) {
         button_changes.$$scope = {dirty, ctx: ctx2};
       }
       button.$set(button_changes);
@@ -10386,6 +10624,8 @@ function create_fragment6(ctx) {
 }
 function instance6($$self, $$props, $$invalidate) {
   let $contentScrollPosition;
+  let $doi;
+  let $date;
   let $keywords;
   let $references;
   let $media;
@@ -10395,14 +10635,16 @@ function instance6($$self, $$props, $$invalidate) {
   let $abstract;
   let $title;
   component_subscribe($$self, contentScrollPosition, ($$value) => $$invalidate(3, $contentScrollPosition = $$value));
-  component_subscribe($$self, keywords, ($$value) => $$invalidate(4, $keywords = $$value));
-  component_subscribe($$self, references, ($$value) => $$invalidate(5, $references = $$value));
-  component_subscribe($$self, media, ($$value) => $$invalidate(6, $media = $$value));
-  component_subscribe($$self, content, ($$value) => $$invalidate(7, $content = $$value));
-  component_subscribe($$self, publication, ($$value) => $$invalidate(8, $publication = $$value));
-  component_subscribe($$self, authors, ($$value) => $$invalidate(9, $authors = $$value));
-  component_subscribe($$self, abstract, ($$value) => $$invalidate(10, $abstract = $$value));
-  component_subscribe($$self, title, ($$value) => $$invalidate(11, $title = $$value));
+  component_subscribe($$self, doi, ($$value) => $$invalidate(4, $doi = $$value));
+  component_subscribe($$self, date, ($$value) => $$invalidate(5, $date = $$value));
+  component_subscribe($$self, keywords, ($$value) => $$invalidate(6, $keywords = $$value));
+  component_subscribe($$self, references, ($$value) => $$invalidate(7, $references = $$value));
+  component_subscribe($$self, media, ($$value) => $$invalidate(8, $media = $$value));
+  component_subscribe($$self, content, ($$value) => $$invalidate(9, $content = $$value));
+  component_subscribe($$self, publication, ($$value) => $$invalidate(10, $publication = $$value));
+  component_subscribe($$self, authors, ($$value) => $$invalidate(11, $authors = $$value));
+  component_subscribe($$self, abstract, ($$value) => $$invalidate(12, $abstract = $$value));
+  component_subscribe($$self, title, ($$value) => $$invalidate(13, $title = $$value));
   let html = "";
   let refresh;
   const downloadHTML = async () => {
@@ -10426,6 +10668,8 @@ function instance6($$self, $$props, $$invalidate) {
     $$invalidate(0, html = html.replaceAll("{{title}}", processTitle($title)));
     $$invalidate(0, html = html.replaceAll("{{authors}}", processAuthors($authors)));
     $$invalidate(0, html = html.replace("{{publication}}", processPublication($publication)));
+    $$invalidate(0, html = html.replace("{{date}}", $date));
+    $$invalidate(0, html = html.replaceAll("{{doi}}", $doi));
     $$invalidate(0, html = html.replace("{{keywords}}", processKeywords($keywords)));
     $$invalidate(0, html = html.replace("{{abstract}}", processAbstract($abstract)));
     $$invalidate(0, html = html.replace("{{content}}", processContent($content, $media, $references)));
@@ -10455,7 +10699,7 @@ function instance6($$self, $$props, $$invalidate) {
     }
   };
   $$self.$$.update = () => {
-    if ($$self.$$.dirty & 4080) {
+    if ($$self.$$.dirty & 16368) {
       $: {
         $title;
         $abstract;
@@ -10465,6 +10709,8 @@ function instance6($$self, $$props, $$invalidate) {
         $media;
         $references;
         $keywords;
+        $date;
+        $doi;
         setCompileTimer();
       }
     }
@@ -10480,6 +10726,8 @@ function instance6($$self, $$props, $$invalidate) {
     downloadHTML,
     scrollInView,
     $contentScrollPosition,
+    $doi,
+    $date,
     $keywords,
     $references,
     $media,
@@ -10634,7 +10882,7 @@ function get_each_context4(ctx, list, i) {
   child_ctx[9] = list[i][1];
   return child_ctx;
 }
-function create_default_slot_73(ctx) {
+function create_default_slot_74(ctx) {
   let input;
   let updating_value;
   let current;
@@ -10682,7 +10930,7 @@ function create_default_slot_73(ctx) {
     }
   };
 }
-function create_default_slot_63(ctx) {
+function create_default_slot_64(ctx) {
   let input;
   let updating_value;
   let current;
@@ -10727,7 +10975,7 @@ function create_default_slot_63(ctx) {
     }
   };
 }
-function create_default_slot_53(ctx) {
+function create_default_slot_54(ctx) {
   let t;
   return {
     c() {
@@ -10742,12 +10990,12 @@ function create_default_slot_53(ctx) {
     }
   };
 }
-function create_default_slot_43(ctx) {
+function create_default_slot_44(ctx) {
   let button;
   let current;
   button = new Button({
     props: {
-      $$slots: {default: [create_default_slot_53]},
+      $$slots: {default: [create_default_slot_54]},
       $$scope: {ctx}
     }
   });
@@ -10792,21 +11040,21 @@ function create_default_slot_35(ctx) {
   col0 = new Col({
     props: {
       class: "col-5",
-      $$slots: {default: [create_default_slot_73]},
+      $$slots: {default: [create_default_slot_74]},
       $$scope: {ctx}
     }
   });
   col1 = new Col({
     props: {
       class: "col-5",
-      $$slots: {default: [create_default_slot_63]},
+      $$slots: {default: [create_default_slot_64]},
       $$scope: {ctx}
     }
   });
   col2 = new Col({
     props: {
       class: "col-1",
-      $$slots: {default: [create_default_slot_43]},
+      $$slots: {default: [create_default_slot_44]},
       $$scope: {ctx}
     }
   });
@@ -11274,7 +11522,7 @@ function get_each_context5(ctx, list, i) {
   child_ctx[11] = list[i][1];
   return child_ctx;
 }
-function create_default_slot_74(ctx) {
+function create_default_slot_75(ctx) {
   let input_1;
   let updating_value;
   let current;
@@ -11319,7 +11567,7 @@ function create_default_slot_74(ctx) {
     }
   };
 }
-function create_default_slot_64(ctx) {
+function create_default_slot_65(ctx) {
   let input_1;
   let mounted;
   let dispose;
@@ -11347,7 +11595,7 @@ function create_default_slot_64(ctx) {
     }
   };
 }
-function create_default_slot_54(ctx) {
+function create_default_slot_55(ctx) {
   let t;
   return {
     c() {
@@ -11362,12 +11610,12 @@ function create_default_slot_54(ctx) {
     }
   };
 }
-function create_default_slot_44(ctx) {
+function create_default_slot_45(ctx) {
   let button;
   let current;
   button = new Button({
     props: {
-      $$slots: {default: [create_default_slot_54]},
+      $$slots: {default: [create_default_slot_55]},
       $$scope: {ctx}
     }
   });
@@ -11412,21 +11660,21 @@ function create_default_slot_36(ctx) {
   col0 = new Col({
     props: {
       class: "col-5",
-      $$slots: {default: [create_default_slot_74]},
+      $$slots: {default: [create_default_slot_75]},
       $$scope: {ctx}
     }
   });
   col1 = new Col({
     props: {
       class: "col-5",
-      $$slots: {default: [create_default_slot_64]},
+      $$slots: {default: [create_default_slot_65]},
       $$scope: {ctx}
     }
   });
   col2 = new Col({
     props: {
       class: "col-1",
-      $$slots: {default: [create_default_slot_44]},
+      $$slots: {default: [create_default_slot_45]},
       $$scope: {ctx}
     }
   });
@@ -11964,31 +12212,39 @@ function create_fragment10(ctx) {
   let t23;
   let pre4;
   let t26;
-  let h32;
+  let h44;
   let t28;
   let pre5;
   let t31;
-  let h33;
+  let h32;
   let t33;
   let pre6;
   let t36;
-  let h34;
+  let h33;
   let t38;
   let pre7;
   let t41;
-  let h35;
+  let h34;
   let t43;
-  let p;
-  let t45;
   let pre8;
+  let t46;
+  let h35;
   let t48;
-  let h36;
-  let t50;
   let pre9;
+  let t51;
+  let h36;
   let t53;
-  let h37;
+  let p;
   let t55;
   let pre10;
+  let t58;
+  let h37;
+  let t60;
+  let pre11;
+  let t63;
+  let h38;
+  let t65;
+  let pre12;
   return {
     c() {
       h30 = element("h3");
@@ -12016,48 +12272,65 @@ function create_fragment10(ctx) {
 `;
       t16 = space();
       h42 = element("h4");
-      h42.textContent = "Numbered List";
+      h42.textContent = "Inline Math";
       t18 = space();
       pre3 = element("pre");
-      pre3.textContent = `${`<ol>
+      pre3.textContent = `${`$F=ma$`}
+`;
+      t21 = space();
+      h43 = element("h4");
+      h43.textContent = "Numbered List";
+      t23 = space();
+      pre4 = element("pre");
+      pre4.textContent = `${`<ol>
   <li></li>
   <li></li>
 </ol>`}
 `;
-      t21 = space();
-      h43 = element("h4");
-      h43.textContent = "Ordered List";
-      t23 = space();
-      pre4 = element("pre");
-      pre4.textContent = `${`<ul>
+      t26 = space();
+      h44 = element("h4");
+      h44.textContent = "Ordered List";
+      t28 = space();
+      pre5 = element("pre");
+      pre5.textContent = `${`<ul>
   <li></li>
   <li></li>
 </ul>`}
 `;
-      t26 = space();
+      t31 = space();
       h32 = element("h3");
       h32.textContent = "Citation";
-      t28 = space();
-      pre5 = element("pre");
-      pre5.textContent = `${"<Cite></Cite>"}
-`;
-      t31 = space();
-      h33 = element("h3");
-      h33.textContent = "Figure";
       t33 = space();
       pre6 = element("pre");
-      pre6.textContent = `${`<Figure>
+      pre6.textContent = `${"<Cite></Cite>"}
+`;
+      t36 = space();
+      h33 = element("h3");
+      h33.textContent = "Equation";
+      t38 = space();
+      pre7 = element("pre");
+      pre7.textContent = `${`<Equation>
+  F=ma
+  <Label></Label>
+</FEquationigure>`}
+`;
+      t41 = space();
+      h34 = element("h3");
+      h34.textContent = "Figure";
+      t43 = space();
+      pre8 = element("pre");
+      pre8.textContent = `${`<Figure>
   <Key></Key>
   <Caption></Caption>
   <Label></Label>
 </Figure>`}
 `;
-      t36 = space();
-      h34 = element("h3");
-      h34.textContent = "Slideshow";
-      t38 = space();
-      pre7 = element("pre");
-      pre7.textContent = `${`<Slideshow>
+      t46 = space();
+      h35 = element("h3");
+      h35.textContent = "Slideshow";
+      t48 = space();
+      pre9 = element("pre");
+      pre9.textContent = `${`<Slideshow>
   <Slide>
     <Key></Key>
     <Caption></Caption>
@@ -12070,37 +12343,37 @@ function create_fragment10(ctx) {
   <Label></Label>
 </Slideshow>`}
 `;
-      t41 = space();
-      h35 = element("h3");
-      h35.textContent = "Table";
-      t43 = space();
+      t51 = space();
+      h36 = element("h3");
+      h36.textContent = "Table";
+      t53 = space();
       p = element("p");
       p.textContent = "Note: Tables are added as images at the moment.";
-      t45 = space();
-      pre8 = element("pre");
-      pre8.textContent = `${`<Table>
+      t55 = space();
+      pre10 = element("pre");
+      pre10.textContent = `${`<Table>
   <Key></Key>
   <Caption></Caption>
   <Label></Label>
 </Table>`}
 `;
-      t48 = space();
-      h36 = element("h3");
-      h36.textContent = "Video";
-      t50 = space();
-      pre9 = element("pre");
-      pre9.textContent = `${`<Video>
+      t58 = space();
+      h37 = element("h3");
+      h37.textContent = "Video";
+      t60 = space();
+      pre11 = element("pre");
+      pre11.textContent = `${`<Video>
   <Key></Key>
   <Caption></Caption>
   <Label></Label>
 </Video>`}
 `;
-      t53 = space();
-      h37 = element("h3");
-      h37.textContent = "Dataset";
-      t55 = space();
-      pre10 = element("pre");
-      pre10.textContent = `${`<Dataset>
+      t63 = space();
+      h38 = element("h3");
+      h38.textContent = "Dataset";
+      t65 = space();
+      pre12 = element("pre");
+      pre12.textContent = `${`<Dataset>
   <Key></Key>
   <Caption></Caption>
   <Label></Label>
@@ -12117,6 +12390,8 @@ function create_fragment10(ctx) {
       attr(pre8, "class", "svelte-d3x5xb");
       attr(pre9, "class", "svelte-d3x5xb");
       attr(pre10, "class", "svelte-d3x5xb");
+      attr(pre11, "class", "svelte-d3x5xb");
+      attr(pre12, "class", "svelte-d3x5xb");
     },
     m(target, anchor) {
       insert(target, h30, anchor);
@@ -12141,31 +12416,39 @@ function create_fragment10(ctx) {
       insert(target, t23, anchor);
       insert(target, pre4, anchor);
       insert(target, t26, anchor);
-      insert(target, h32, anchor);
+      insert(target, h44, anchor);
       insert(target, t28, anchor);
       insert(target, pre5, anchor);
       insert(target, t31, anchor);
-      insert(target, h33, anchor);
+      insert(target, h32, anchor);
       insert(target, t33, anchor);
       insert(target, pre6, anchor);
       insert(target, t36, anchor);
-      insert(target, h34, anchor);
+      insert(target, h33, anchor);
       insert(target, t38, anchor);
       insert(target, pre7, anchor);
       insert(target, t41, anchor);
-      insert(target, h35, anchor);
+      insert(target, h34, anchor);
       insert(target, t43, anchor);
-      insert(target, p, anchor);
-      insert(target, t45, anchor);
       insert(target, pre8, anchor);
+      insert(target, t46, anchor);
+      insert(target, h35, anchor);
       insert(target, t48, anchor);
-      insert(target, h36, anchor);
-      insert(target, t50, anchor);
       insert(target, pre9, anchor);
+      insert(target, t51, anchor);
+      insert(target, h36, anchor);
       insert(target, t53, anchor);
-      insert(target, h37, anchor);
+      insert(target, p, anchor);
       insert(target, t55, anchor);
       insert(target, pre10, anchor);
+      insert(target, t58, anchor);
+      insert(target, h37, anchor);
+      insert(target, t60, anchor);
+      insert(target, pre11, anchor);
+      insert(target, t63, anchor);
+      insert(target, h38, anchor);
+      insert(target, t65, anchor);
+      insert(target, pre12, anchor);
     },
     p: noop,
     i: noop,
@@ -12216,7 +12499,7 @@ function create_fragment10(ctx) {
       if (detaching)
         detach(t26);
       if (detaching)
-        detach(h32);
+        detach(h44);
       if (detaching)
         detach(t28);
       if (detaching)
@@ -12224,7 +12507,7 @@ function create_fragment10(ctx) {
       if (detaching)
         detach(t31);
       if (detaching)
-        detach(h33);
+        detach(h32);
       if (detaching)
         detach(t33);
       if (detaching)
@@ -12232,7 +12515,7 @@ function create_fragment10(ctx) {
       if (detaching)
         detach(t36);
       if (detaching)
-        detach(h34);
+        detach(h33);
       if (detaching)
         detach(t38);
       if (detaching)
@@ -12240,31 +12523,47 @@ function create_fragment10(ctx) {
       if (detaching)
         detach(t41);
       if (detaching)
-        detach(h35);
+        detach(h34);
       if (detaching)
         detach(t43);
       if (detaching)
-        detach(p);
-      if (detaching)
-        detach(t45);
-      if (detaching)
         detach(pre8);
+      if (detaching)
+        detach(t46);
+      if (detaching)
+        detach(h35);
       if (detaching)
         detach(t48);
       if (detaching)
-        detach(h36);
-      if (detaching)
-        detach(t50);
-      if (detaching)
         detach(pre9);
+      if (detaching)
+        detach(t51);
+      if (detaching)
+        detach(h36);
       if (detaching)
         detach(t53);
       if (detaching)
-        detach(h37);
+        detach(p);
       if (detaching)
         detach(t55);
       if (detaching)
         detach(pre10);
+      if (detaching)
+        detach(t58);
+      if (detaching)
+        detach(h37);
+      if (detaching)
+        detach(t60);
+      if (detaching)
+        detach(pre11);
+      if (detaching)
+        detach(t63);
+      if (detaching)
+        detach(h38);
+      if (detaching)
+        detach(t65);
+      if (detaching)
+        detach(pre12);
     }
   };
 }
@@ -12396,7 +12695,7 @@ function create_default_slot_162(ctx) {
     },
     p(ctx2, dirty) {
       const navlink_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         navlink_changes.$$scope = {dirty, ctx: ctx2};
       }
       navlink.$set(navlink_changes);
@@ -12452,7 +12751,7 @@ function create_default_slot_142(ctx) {
     },
     p(ctx2, dirty) {
       const navlink_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         navlink_changes.$$scope = {dirty, ctx: ctx2};
       }
       navlink.$set(navlink_changes);
@@ -12508,7 +12807,7 @@ function create_default_slot_122(ctx) {
     },
     p(ctx2, dirty) {
       const navlink_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         navlink_changes.$$scope = {dirty, ctx: ctx2};
       }
       navlink.$set(navlink_changes);
@@ -12571,17 +12870,17 @@ function create_default_slot_11(ctx) {
     },
     p(ctx2, dirty) {
       const navitem0_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         navitem0_changes.$$scope = {dirty, ctx: ctx2};
       }
       navitem0.$set(navitem0_changes);
       const navitem1_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         navitem1_changes.$$scope = {dirty, ctx: ctx2};
       }
       navitem1.$set(navitem1_changes);
       const navitem2_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         navitem2_changes.$$scope = {dirty, ctx: ctx2};
       }
       navitem2.$set(navitem2_changes);
@@ -12664,7 +12963,7 @@ function create_default_slot_10(ctx) {
     },
     p(ctx2, dirty) {
       const navbarbrand_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         navbarbrand_changes.$$scope = {dirty, ctx: ctx2};
       }
       navbarbrand.$set(navbarbrand_changes);
@@ -12679,7 +12978,7 @@ function create_default_slot_10(ctx) {
         }
       }
       const nav_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         nav_changes.$$scope = {dirty, ctx: ctx2};
       }
       nav.$set(nav_changes);
@@ -12763,7 +13062,7 @@ function create_default_slot_82(ctx) {
     }
   };
 }
-function create_default_slot_75(ctx) {
+function create_default_slot_76(ctx) {
   let media_1;
   let current;
   media_1 = new Media_svelte_default({});
@@ -12790,7 +13089,7 @@ function create_default_slot_75(ctx) {
     }
   };
 }
-function create_default_slot_65(ctx) {
+function create_default_slot_66(ctx) {
   let references_1;
   let current;
   references_1 = new References_svelte_default({});
@@ -12817,7 +13116,7 @@ function create_default_slot_65(ctx) {
     }
   };
 }
-function create_default_slot_55(ctx) {
+function create_default_slot_56(ctx) {
   let syntax;
   let current;
   syntax = new Syntax_svelte_default({});
@@ -12844,7 +13143,7 @@ function create_default_slot_55(ctx) {
     }
   };
 }
-function create_default_slot_45(ctx) {
+function create_default_slot_46(ctx) {
   let about;
   let current;
   about = new About_svelte_default({});
@@ -12908,7 +13207,7 @@ function create_default_slot_37(ctx) {
       class: "mt-1",
       tabId: "media",
       tab: "Media",
-      $$slots: {default: [create_default_slot_75]},
+      $$slots: {default: [create_default_slot_76]},
       $$scope: {ctx}
     }
   });
@@ -12917,7 +13216,7 @@ function create_default_slot_37(ctx) {
       class: "mt-1",
       tabId: "references",
       tab: "References",
-      $$slots: {default: [create_default_slot_65]},
+      $$slots: {default: [create_default_slot_66]},
       $$scope: {ctx}
     }
   });
@@ -12926,7 +13225,7 @@ function create_default_slot_37(ctx) {
       class: "mt-1",
       tabId: "syntax",
       tab: "Syntax",
-      $$slots: {default: [create_default_slot_55]},
+      $$slots: {default: [create_default_slot_56]},
       $$scope: {ctx}
     }
   });
@@ -12935,7 +13234,7 @@ function create_default_slot_37(ctx) {
       class: "mt-1",
       tabId: "about",
       tab: "About",
-      $$slots: {default: [create_default_slot_45]},
+      $$slots: {default: [create_default_slot_46]},
       $$scope: {ctx}
     }
   });
@@ -12969,32 +13268,32 @@ function create_default_slot_37(ctx) {
     },
     p(ctx2, dirty) {
       const tabpane0_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         tabpane0_changes.$$scope = {dirty, ctx: ctx2};
       }
       tabpane0.$set(tabpane0_changes);
       const tabpane1_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         tabpane1_changes.$$scope = {dirty, ctx: ctx2};
       }
       tabpane1.$set(tabpane1_changes);
       const tabpane2_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         tabpane2_changes.$$scope = {dirty, ctx: ctx2};
       }
       tabpane2.$set(tabpane2_changes);
       const tabpane3_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         tabpane3_changes.$$scope = {dirty, ctx: ctx2};
       }
       tabpane3.$set(tabpane3_changes);
       const tabpane4_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         tabpane4_changes.$$scope = {dirty, ctx: ctx2};
       }
       tabpane4.$set(tabpane4_changes);
       const tabpane5_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         tabpane5_changes.$$scope = {dirty, ctx: ctx2};
       }
       tabpane5.$set(tabpane5_changes);
@@ -13058,7 +13357,7 @@ function create_default_slot_27(ctx) {
     },
     p(ctx2, dirty) {
       const tabcontent_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         tabcontent_changes.$$scope = {dirty, ctx: ctx2};
       }
       tabcontent.$set(tabcontent_changes);
@@ -13136,12 +13435,12 @@ function create_default_slot9(ctx) {
     },
     p(ctx2, dirty) {
       const col0_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         col0_changes.$$scope = {dirty, ctx: ctx2};
       }
       col0.$set(col0_changes);
       const col1_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         col1_changes.$$scope = {dirty, ctx: ctx2};
       }
       col1.$set(col1_changes);
@@ -13210,12 +13509,12 @@ function create_fragment12(ctx) {
     },
     p(ctx2, [dirty]) {
       const navbar_changes = {};
-      if (dirty & 4097) {
+      if (dirty & 16385) {
         navbar_changes.$$scope = {dirty, ctx: ctx2};
       }
       navbar.$set(navbar_changes);
       const row_changes = {};
-      if (dirty & 4096) {
+      if (dirty & 16384) {
         row_changes.$$scope = {dirty, ctx: ctx2};
       }
       row.$set(row_changes);
@@ -13252,6 +13551,8 @@ function instance10($$self, $$props, $$invalidate) {
   let $authors;
   let $publication;
   let $title;
+  let $date;
+  let $doi;
   component_subscribe($$self, references, ($$value) => $$invalidate(3, $references = $$value));
   component_subscribe($$self, media, ($$value) => $$invalidate(4, $media = $$value));
   component_subscribe($$self, content, ($$value) => $$invalidate(5, $content = $$value));
@@ -13260,6 +13561,8 @@ function instance10($$self, $$props, $$invalidate) {
   component_subscribe($$self, authors, ($$value) => $$invalidate(8, $authors = $$value));
   component_subscribe($$self, publication, ($$value) => $$invalidate(9, $publication = $$value));
   component_subscribe($$self, title, ($$value) => $$invalidate(10, $title = $$value));
+  component_subscribe($$self, date, ($$value) => $$invalidate(11, $date = $$value));
+  component_subscribe($$self, doi, ($$value) => $$invalidate(12, $doi = $$value));
   let fileHandle;
   const onOpen = async () => {
     console.log("Open Clicked");
@@ -13279,14 +13582,28 @@ function instance10($$self, $$props, $$invalidate) {
       const file = await fileHandle.getFile();
       const text2 = await file.text();
       const manuscript = JSON.parse(text2);
-      title.set(manuscript.title);
-      publication.set(manuscript.publication);
-      authors.set(manuscript.authors);
-      keywords.set(manuscript.keywords);
-      abstract.set(manuscript.abstract);
-      content.set(manuscript.content);
-      media.set(manuscript.media);
-      references.set(manuscript.references);
+      if (manuscript.title)
+        title.set(manuscript.title);
+      if (manuscript.publication)
+        publication.set(manuscript.publication);
+      if (manuscript.authors) {
+        if (manuscript.title)
+          authors.set(manuscript.authors);
+      }
+      if (manuscript.keywords)
+        keywords.set(manuscript.keywords);
+      if (manuscript.abstract)
+        abstract.set(manuscript.abstract);
+      if (manuscript.content)
+        content.set(manuscript.content);
+      if (manuscript.media)
+        media.set(manuscript.media);
+      if (manuscript.references)
+        references.set(manuscript.references);
+      if (manuscript.date)
+        date.set(manuscript.date);
+      if (manuscript.doi)
+        doi.set(manuscript.doi);
     } else {
       console.log("Unsupported browser");
     }
@@ -13303,7 +13620,9 @@ function instance10($$self, $$props, $$invalidate) {
         abstract: $abstract,
         content: $content,
         media: $media,
-        references: $references
+        references: $references,
+        doi: $doi,
+        date: $date
       };
       await writable2.write(JSON.stringify(json));
       await writable2.close();
