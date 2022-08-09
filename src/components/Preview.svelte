@@ -1,19 +1,6 @@
 <script lang="ts">
 	import { Button } from "sveltestrap"
-	// import manuscript from "../ts/manuscript-store"
-	import {
-		title,
-		publication,
-		authors,
-		keywords,
-		abstract,
-		content,
-		media,
-		references,
-		contentScrollPosition,
-		doi,
-		date,
-	} from "../ts/stores"
+	import { manuscript, contentScrollPosition } from "../ts/stores"
 	import { template } from "../ts/template"
 	import {
 		processTitle,
@@ -50,18 +37,28 @@
 	const compile = async () => {
 		console.log("hello")
 		html = (" " + template).slice(1)
-		html = html.replaceAll("{{title}}", processTitle($title))
-		html = html.replaceAll("{{authors}}", processAuthors($authors))
-		html = html.replace("{{publication}}", processPublication($publication))
-		html = html.replace("{{date}}", $date)
-		html = html.replaceAll("{{doi}}", $doi)
-		html = html.replace("{{keywords}}", processKeywords($keywords))
-		html = html.replace("{{abstract}}", processAbstract($abstract))
+		html = html.replaceAll("{{title}}", processTitle($manuscript.title))
+		html = html.replaceAll("{{authors}}", processAuthors($manuscript.authors))
+		html = html.replace(
+			"{{publication}}",
+			processPublication($manuscript.publication)
+		)
+		html = html.replace("{{date}}", $manuscript.date)
+		html = html.replaceAll("{{doi}}", $manuscript.doi)
+		html = html.replace("{{keywords}}", processKeywords($manuscript.keywords))
+		html = html.replace("{{abstract}}", processAbstract($manuscript.abstract))
 		html = html.replace(
 			"{{content}}",
-			processContent($content, $media, $references)
+			processContent(
+				$manuscript.content,
+				$manuscript.media,
+				$manuscript.references
+			)
 		)
-		html = html.replace("{{citations}}", processReferences($references))
+		html = html.replace(
+			"{{citations}}",
+			processReferences($manuscript.references)
+		)
 		/*
 		setTimeout(() => {
 			scrollInView()
@@ -98,16 +95,7 @@
 	}
 
 	$: {
-		$title
-		$abstract
-		$authors
-		$publication
-		$content
-		$media
-		$references
-		$keywords
-		$date
-		$doi
+		$manuscript
 		setCompileTimer()
 	}
 

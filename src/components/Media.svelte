@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { FormGroup, Row, Col, Table, Button, Input } from "sveltestrap"
-	//import manuscript from "../ts/manuscript-store"
-	import { media } from "../ts/stores"
+	import { manuscript } from "../ts/stores"
 
 	let key: string = ""
 	let files: any
@@ -15,11 +14,12 @@
 			// get the file in base 64 format
 			const reader = new FileReader()
 			reader.addEventListener("load", () => {
-				//$manuscript.media[key] = reader.result.toString()
-				media.update((dict) => {
-					dict[key] = reader.result.toString()
-					return dict
-				})
+				$manuscript.media[key] = reader.result.toString()
+				//media.update((dict) => {
+				//	dict[key] = reader.result.toString()
+				//	return dict
+				//})
+
 				// reset the values
 				key = ""
 				input.value = ""
@@ -35,8 +35,10 @@
 	}
 
 	const removeMedia = (k: string) => {
-		delete $media[k]
-		$media = $media
+		$manuscript.media.splice(k, 1)
+		$manuscript.media = $manuscript.media
+		//delete $media[k]
+		//$media = $media
 	}
 </script>
 
@@ -63,7 +65,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each Object.entries($media) as [k, v]}
+		{#each Object.entries($manuscript.media) as [k, v]}
 			<tr>
 				<td>{k}</td>
 				<td>

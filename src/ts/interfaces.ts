@@ -11,6 +11,8 @@ export interface ManuScript {
 	references: {
 		[key: string]: string
 	}
+	date: string
+	doi: string
 }
 
 export interface ManuScriptAuthor {

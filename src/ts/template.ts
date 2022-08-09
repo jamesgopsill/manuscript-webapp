@@ -17,7 +17,7 @@ export const template = `
 				padding: 0 0;
 			}
 
-			h1, h2, h3, h4, p, li, figcaption, .paper-media-caption {
+			h1, h2, h3, h4, p, li, figcaption, .paper-media-caption, .paper-equation-label {
 				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 			}
 			
@@ -123,22 +123,6 @@ export const template = `
 				margin-bottom: 10px;
 			}
 			
-			/*
-			.paper-equation {
-				text-align: center;
-				float: left;
-				width: 95%;
-				font-size: 1.2em;
-			}
-			
-			.paper-equation-caption {
-				text-align: right;
-				font-size: 1em;
-				width: 4%;
-				float: right;
-			}
-			*/
-			
 			img {
 				max-width: 90%;
 				max-height: 300px;
@@ -162,21 +146,12 @@ export const template = `
 			}
 			.paper-equation {
 				width: 95% !important;
+				font-size: 1.5em;
 			}
 			.paper-equation-label {
 				width: 5%;
+				font-size: 1em !important;
 			}
-			
-			/*
-			table {
-				margin: 0 auto;
-				margin-bottom: 10px;
-				max-width: 100%;
-				border-top: 2px solid black;
-				border-bottom: 2px solid black;
-				border-collapse: collapse;
-			}
-			*/
 			
 			th {
 				border-bottom: 1px solid black;
@@ -190,10 +165,6 @@ export const template = `
 			.citations {
 				list-style-position: inside;
 				font-size: 1em;
-			}
-
-			.MathJax {
-				font-size: 1em !important;
 			}
 		</style>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css"></link>

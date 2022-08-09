@@ -1,6 +1,5 @@
 <script lang="ts">
-	//import manuscript from "../ts/manuscript-store"
-	import { abstract } from "../ts/stores"
+	import { manuscript } from "../ts/stores"
 	import { Input, FormGroup, Label } from "sveltestrap"
 
 	let inner: HTMLTextAreaElement
@@ -17,6 +16,6 @@
 		type="textarea"
 		bind:inner
 		on:input={resize}
-		bind:value={$abstract}
+		bind:value={$manuscript.abstract}
 	/>
 </FormGroup>

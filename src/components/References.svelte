@@ -1,24 +1,26 @@
 <script lang="ts">
-	//import manuscript from "../ts/manuscript-store"
-	import { references } from "../ts/stores"
+	import { manuscript } from "../ts/stores"
 	import { Col, Row, Button, Table, Input, FormGroup } from "sveltestrap"
 
 	let key = ""
 	let url = ""
 
 	const addReference = () => {
-		//$manuscript.references[key] = url
+		$manuscript.references[key] = url
+
+		/*
 		references.update((dict) => {
 			dict[key] = url
 			return dict
 		})
+		*/
 		key = ""
 		url = ""
 	}
 
 	const removeReference = (k: string) => {
-		delete $references[k]
-		$references = $references
+		delete $manuscript.references[k]
+		$manuscript.references = $manuscript.references
 	}
 </script>
 
@@ -45,7 +47,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each Object.entries($references) as [k, v]}
+		{#each Object.entries($manuscript.references) as [k, v]}
 			<tr>
 				<td>{k}</td>
 				{#if v.length > 50}

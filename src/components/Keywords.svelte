@@ -1,27 +1,18 @@
 <script lang="ts">
-	//import manuscript from "../ts/manuscript-store"
-	import { keywords } from "../ts/stores"
+	import { manuscript } from "../ts/stores"
 	import { Col, Row, Button, Table, Input, FormGroup, Label } from "sveltestrap"
 
 	let keyword = ""
 
 	const addKeyword = () => {
-		keywords.update((value) => {
-			value.push(keyword)
-			return value
-		})
-		//$manuscript.keywords.push(keyword)
-		//$manuscript.keywords = $manuscript.keywords
+		$manuscript.keywords.push(keyword)
+		$manuscript.keywords = $manuscript.keywords
 		keyword = ""
 	}
 
 	const removeKeyword = (idx: number) => {
-		keywords.update((value) => {
-			value.splice(idx, 1)
-			return value
-		})
-		//$manuscript.keywords.splice(idx, 1)
-		//$manuscript.keywords = $manuscript.keywords
+		$manuscript.keywords.splice(idx, 1)
+		$manuscript.keywords = $manuscript.keywords
 	}
 </script>
 
@@ -45,7 +36,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each $keywords as keyword, i}
+		{#each $manuscript.keywords as keyword, i}
 			<tr>
 				<td>{keyword}</td>
 				<td>

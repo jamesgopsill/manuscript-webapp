@@ -17,19 +17,7 @@
 	import Media from "./components/Media.svelte"
 	import Syntax from "./components/Syntax.svelte"
 	import About from "./components/About.svelte"
-	// import manuscript from "./ts/manuscript-store"
-	import {
-		title,
-		publication,
-		authors,
-		keywords,
-		abstract,
-		content,
-		media,
-		references,
-		date,
-		doi,
-	} from "./ts/stores"
+	import { manuscript } from "./ts/stores"
 
 	let fileHandle: any
 
@@ -54,19 +42,8 @@
 			fileHandle = fileHandle[0]
 			const file = await fileHandle.getFile()
 			const text = await file.text()
-			const manuscript = JSON.parse(text)
-			if (manuscript.title) title.set(manuscript.title)
-			if (manuscript.publication) publication.set(manuscript.publication)
-			if (manuscript.authors)
-				if (manuscript.title) authors.set(manuscript.authors)
-			if (manuscript.keywords) keywords.set(manuscript.keywords)
-			if (manuscript.abstract) abstract.set(manuscript.abstract)
-			if (manuscript.content) content.set(manuscript.content)
-			if (manuscript.media) media.set(manuscript.media)
-			if (manuscript.references) references.set(manuscript.references)
-			if (manuscript.date) date.set(manuscript.date)
-			if (manuscript.doi) doi.set(manuscript.doi)
-			// $manuscript = manuscript
+			// TODO: AJV check the json is valid
+			$manuscript = JSON.parse(text)
 		} else {
 			console.log("Unsupported browser")
 		}
@@ -76,20 +53,7 @@
 		console.log("Save Clicked")
 		if (fileHandle) {
 			const writable = await fileHandle.createWritable()
-			const json = {
-				title: $title,
-				publication: $publication,
-				authors: $authors,
-				keywords: $keywords,
-				abstract: $abstract,
-				content: $content,
-				media: $media,
-				references: $references,
-				doi: $doi,
-				date: $date,
-			}
-			await writable.write(JSON.stringify(json))
-			// await writable.write(JSON.stringify($manuscript))
+			await writable.write(JSON.stringify($manuscript))
 			await writable.close()
 		} else {
 			saveNewFile()
@@ -114,18 +78,7 @@
 			fileHandle = await window.showSaveFilePicker(config)
 			if (fileHandle) {
 				const writable = await fileHandle.createWritable()
-				const json = {
-					title: $title,
-					publication: $publication,
-					authors: $authors,
-					keywords: $keywords,
-					abstract: $abstract,
-					content: $content,
-					media: $media,
-					references: $references,
-				}
-				await writable.write(JSON.stringify(json))
-				// await writable.write(JSON.stringify($manuscript))
+				await writable.write(JSON.stringify($manuscript))
 				await writable.close()
 			}
 		} else {

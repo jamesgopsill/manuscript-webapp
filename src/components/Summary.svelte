@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { FormGroup, Input, Label } from "sveltestrap"
-	import { title, publication, date, doi } from "../ts/stores"
+	import { manuscript } from "../ts/stores"
 	import Authors from "./Authors.svelte"
 	import Abstract from "./Abstract.svelte"
 	import Keywords from "./Keywords.svelte"
@@ -8,22 +8,22 @@
 
 <FormGroup>
 	<Label>Title</Label>
-	<Input type="text" bind:value={$title} />
+	<Input type="text" bind:value={$manuscript.title} />
 </FormGroup>
 
 <FormGroup>
 	<Label>Publication</Label>
-	<Input type="text" bind:value={$publication} />
+	<Input type="text" bind:value={$manuscript.publication} />
 </FormGroup>
 
 <FormGroup>
 	<Label>Date Published</Label>
-	<Input type="text" bind:value={$date} />
+	<Input type="text" bind:value={$manuscript.date} />
 </FormGroup>
 
 <FormGroup>
 	<Label>DOI</Label>
-	<Input type="text" bind:value={$doi} />
+	<Input type="text" bind:value={$manuscript.doi} />
 </FormGroup>
 
 <Authors />
