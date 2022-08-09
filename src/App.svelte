@@ -18,8 +18,12 @@
 	import Syntax from "./components/Syntax.svelte"
 	import About from "./components/About.svelte"
 	import { manuscript } from "./ts/stores"
+	import AJV from "ajv"
+	import { manuscriptSchema } from "./ts/interfaces"
 
 	let fileHandle: any
+
+	const ajv = new AJV()
 
 	const onOpen = async () => {
 		console.log("Open Clicked")
@@ -42,8 +46,13 @@
 			fileHandle = fileHandle[0]
 			const file = await fileHandle.getFile()
 			const text = await file.text()
-			// TODO: AJV check the json is valid
-			$manuscript = JSON.parse(text)
+			const json = JSON.parse(text)
+			const valid = ajv.validate(manuscriptSchema, json)
+			if (valid) {
+				$manuscript = json
+			} else {
+				alert("File format error")
+			}
 		} else {
 			console.log("Unsupported browser")
 		}
