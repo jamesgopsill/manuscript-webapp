@@ -107,6 +107,15 @@
 
 <div class="text-center mb-2">
 	<Button size="sm" on:click={downloadHTML}>Download</Button>
+	{#if refresh}
+		<span class="text-muted"
+			><small>Compiling</small><img
+				height="25"
+				src="https://media3.giphy.com/media/grNkIEN4dkiMXFLIE9/giphy.gif"
+				alt=""
+			/></span
+		>
+	{/if}
 </div>
 
 <iframe
