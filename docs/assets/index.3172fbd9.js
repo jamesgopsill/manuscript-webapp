@@ -12,16 +12,15 @@ const So=function(){const e=document.createElement("link").relList;if(e&&e.suppo
 		/>
 		<meta name="description" content="Research for the Web">
 		<title>{{title}}</title>
+		<link href="https://fonts.googleapis.com/css?family=Fira Sans" rel="stylesheet">
 		<style>
 			* {
-				/* font-family: Helvetica, sans-serif; */
-				/* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
 				margin: 0 0;
 				padding: 0 0;
 			}
 
-			h1, h2, h3, h4, p, li, figcaption, .paper-media-caption, .paper-equation-label {
-				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+			h1, h2, h3, h4, p, li, figcaption, .paper-media-caption, .paper-equation-label, .published-in, .created-by {
+				font-family: "Fira Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 			}
 			
 			p {
@@ -56,14 +55,12 @@ const So=function(){const e=document.createElement("link").relList;if(e&&e.suppo
 				text-align: left;
 				font-size: 0.8em;
 				color: rgb(169, 169, 169);
-				font-family: Helvetica, sans-serif;
 			}
 			
 			.published-in, .created-by {
 				color: rgb(169, 169, 169);
 				font-size: 0.8em;
 				text-indent: 0em !important;
-				font-family: Helvetica, sans-serif;
 				margin-top: 0px;
 				margin-bottom: 0px;
 			}
@@ -71,6 +68,9 @@ const So=function(){const e=document.createElement("link").relList;if(e&&e.suppo
 			.title {
 				margin-bottom: 25px;
 				margin-top: 25px;
+				font-size: 18pt;
+				font-style: italic;
+				font-weight: normal;
 			}
 			
 			.authors,
@@ -101,7 +101,9 @@ const So=function(){const e=document.createElement("link").relList;if(e&&e.suppo
 			}
 
 			h1, h2, h3 {
-				font-size: 1.4em;
+				font-size: 1.6em;
+				font-weight: normal;
+				font-style: italic;
 			}
 			
 			a {
@@ -149,7 +151,7 @@ const So=function(){const e=document.createElement("link").relList;if(e&&e.suppo
 			}
 			.paper-equation {
 				width: 95% !important;
-				font-size: 1.5em;
+				font-size: 1.2em;
 			}
 			.paper-equation-label {
 				width: 5%;
@@ -169,6 +171,10 @@ const So=function(){const e=document.createElement("link").relList;if(e&&e.suppo
 				list-style-position: inside;
 				font-size: 1em;
 			}
+
+			mjx-container {
+				font-size: 1.0em !important;
+			}
 		</style>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/css/splide.min.css"></link>
 		<style>
@@ -184,7 +190,7 @@ const So=function(){const e=document.createElement("link").relList;if(e&&e.suppo
 	<body>
 		<p class="published-in">Publication: {{publication}}</p>
 		<p class="published-in">Date: {{date}}</p>
-		<p class="published-in">DOI: {{doi}}</p>
+		<p class="published-in">doi: {{doi}}</p>
 		<p class="created-by">
 			Created using
 			<a href="http://jamesgopsill.github.io/manu-script">ManuScript</a>
@@ -217,13 +223,23 @@ const So=function(){const e=document.createElement("link").relList;if(e&&e.suppo
 			MathJax = {
 				tex: {
 					inlineMath: [['$', '$']]
+				},
+				output: {
+					font: "mathjax-fira"
 				}
 			};
 		<\/script>
+		<!--
 		<script
 			id="MathJax-script"
 			async
 			src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"
+		>
+		-->
+		<script
+			id="MathJax-script"
+			async
+			src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0-alpha.1/es5/tex-mml-chtml.js"
 		>
 		<\/script>
 		<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.7/dist/js/splide.min.js"><\/script>
